@@ -13,27 +13,27 @@ public:
     using time_t     = clock_t::time_point;
     using duration_t = clock_t::duration;
 
-    Time() :
+    inline Time() :
         time_(duration_t(0))
     {
     }
 
-    Time(const double seconds) :
+    inline Time(const double seconds) :
         time_(std::chrono::nanoseconds(static_cast<int64_t>(seconds * 1e9)))
     {
     }
 
-    Time(const int64_t &nanoseconds) :
+    inline Time(const int64_t &nanoseconds) :
         time_(duration_t(nanoseconds))
     {
     }
 
-    Time(const uint64_t &nanoseconds) :
+    inline Time(const uint64_t &nanoseconds) :
         time_(duration_t(static_cast<int64_t>(nanoseconds)))
     {
     }
 
-    Time(const time_t &time) :
+    inline Time(const time_t &time) :
         time_(time)
     {
     }
@@ -110,7 +110,7 @@ public:
 
 private:
     time_t time_;
-};
+} __attribute__ ((aligned (8)));;
 }
 
 inline std::ostream & operator << (std::ostream &out, const cslibs_time::Time &time)

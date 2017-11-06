@@ -13,22 +13,22 @@ public:
     using time_t     = clock_t::time_point;
     using duration_t = clock_t::duration;
 
-    Duration() :
+    inline Duration() :
         duration_(0l)
     {
     }
 
-    Duration(const double seconds) :
+    inline Duration(const double seconds) :
         duration_(static_cast<int64_t>(std::floor(seconds * 1e9)))
     {
     }
 
-    Duration(const int64_t nanoseconds) :
+    inline Duration(const int64_t nanoseconds) :
         duration_(nanoseconds)
     {
     }
 
-    Duration(const duration_t duration) :
+    inline Duration(const duration_t duration) :
         duration_(duration)
     {
     }
@@ -119,7 +119,7 @@ public:
 
 private:
     duration_t duration_;
-};
+} __attribute__ ((aligned (8)));;
 }
 
 inline std::ostream & operator << (std::ostream &out, const cslibs_time::Duration &duration)

@@ -11,43 +11,43 @@ public:
     using time_t     = clock_t::time_point;
     using duration_t = clock_t::duration;
 
-    Rate() :
+    inline Rate() :
         start_(Time::now()),
         actual_cycle_time_(0.0),
         expected_cycle_time_(std::numeric_limits<double>::infinity())
     {
     }
 
-    Rate(const double rate) :
+    inline Rate(const double rate) :
         start_(Time::now()),
         actual_cycle_time_(0.0),
         expected_cycle_time_(1.0 / rate)
     {
     }
 
-    Rate(const Duration &d) :
+    inline Rate(const Duration &d) :
         start_(Time::now()),
         actual_cycle_time_(0.0),
         expected_cycle_time_(d)
     {
     }
 
-    void reset()
+    inline void reset()
     {
         start_ = Time::now();
     }
 
-    Duration cycleTime() const
+    inline Duration cycleTime() const
     {
         return actual_cycle_time_;
     }
 
-    Duration expectedCycleTime() const
+    inline Duration expectedCycleTime() const
     {
         return expected_cycle_time_;
     }
 
-    double frequency() const
+    inline double frequency() const
     {
         return 1.0 / expectedCycleTime().seconds();
     }
@@ -77,12 +77,11 @@ public:
 
         return sleep_duration.sleep();
     }
-
 private:
     Time     start_;
     Duration actual_cycle_time_;
     Duration expected_cycle_time_;
-};
+} __attribute__ ((aligned (32)));
 }
 
 
