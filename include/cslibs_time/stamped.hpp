@@ -56,7 +56,7 @@ public:
 
     inline Time const & stamp() const
     {
-        return stamp;
+        return time_;
     }
 
     inline T & data()
