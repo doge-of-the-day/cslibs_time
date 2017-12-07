@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package format="2">
   <name>cslibs_time</name>
-  <version>0.0.1</version>
+  <version>0.0.2</version>
   <description>
     The cslibs_time package contains a ros compatible high precision timing library
     which employs std::chrono.

@@ -53,6 +53,11 @@ public:
         return duration_;
     }
 
+    inline Duration& operator += (const Duration &other)
+    {
+        duration_ += other.duration_;
+        return *this;
+    }
 
     inline bool sleep() const
     {
@@ -67,59 +72,61 @@ public:
         return duration_.count() == 0l;
     }
 
-    inline Duration operator + (const Duration &other)
-    {
-        return Duration(other.duration_ + duration_);
-    }
 
-    inline Duration operator - (const Duration &other)
-    {
-        return Duration(other.duration_ - duration_);
-    }
-
-    inline Duration operator * (const double s)
-    {
-        return Duration(static_cast<int64_t>(std::floor(nanoseconds() * s)));
-    }
-
-    inline Duration operator / (const double s)
-    {
-        return Duration(static_cast<int64_t>(std::floor(nanoseconds() / s)));
-    }
-
-    inline bool operator == (const Duration &other)
-    {
-        return duration_ == other.duration_;
-    }
-
-    inline bool operator != (const Duration &other)
-    {
-        return duration_ != other.duration_;
-    }
-
-    inline bool operator <= (const Duration &other)
-    {
-        return duration_ <= other.duration_;
-    }
-
-    inline bool operator >= (const Duration &other)
-    {
-        return duration_ >= other.duration_;
-    }
-
-    inline bool operator > (const Duration &other)
-    {
-        return duration_ > other.duration_;
-    }
-
-    inline bool operator < (const Duration &other)
-    {
-        return duration_ < other.duration_;
-    }
 
 private:
     duration_t duration_;
 } __attribute__ ((aligned (8)));;
+}
+
+inline cslibs_time::Duration operator + (const cslibs_time::Duration &a, const cslibs_time::Duration &b)
+{
+    return cslibs_time::Duration(a.duration() + b.duration());
+}
+
+inline cslibs_time::Duration operator - (const cslibs_time::Duration &a, const cslibs_time::Duration &b)
+{
+    return cslibs_time::Duration(a.duration() - b.duration());
+}
+
+inline cslibs_time::Duration operator * (const cslibs_time::Duration &a, const double s)
+{
+    return cslibs_time::Duration(static_cast<int64_t>(std::floor(a.nanoseconds() * s)));
+}
+
+inline cslibs_time::Duration operator / (const cslibs_time::Duration &a, const double s)
+{
+    return cslibs_time::Duration(static_cast<int64_t>(std::floor(a.nanoseconds() / s)));
+}
+
+inline bool operator == (const cslibs_time::Duration &a, const cslibs_time::Duration &b)
+{
+    return a.duration() == b.duration();
+}
+
+inline bool operator != (const cslibs_time::Duration &a, const cslibs_time::Duration &b)
+{
+    return a.duration() != b.duration();
+}
+
+inline bool operator <= (const cslibs_time::Duration &a, const cslibs_time::Duration &b)
+{
+    return a.duration() <= b.duration();
+}
+
+inline bool operator >= (const cslibs_time::Duration &a, const cslibs_time::Duration &b)
+{
+    return a.duration() >= b.duration();
+}
+
+inline bool operator > (const cslibs_time::Duration &a, const cslibs_time::Duration &b)
+{
+    return a.duration() > b.duration();
+}
+
+inline bool operator < (const cslibs_time::Duration &a, const cslibs_time::Duration &b)
+{
+    return a.duration() < b.duration();
 }
 
 inline std::ostream & operator << (std::ostream &out, const cslibs_time::Duration &duration)

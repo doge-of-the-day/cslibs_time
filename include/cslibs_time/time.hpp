@@ -63,54 +63,54 @@ public:
         return Time(clock_t::now());
     }
 
-    inline bool operator == (const Time &other) const
-    {
-        return time_ == other.time_;
-    }
-
-    inline bool operator != (const Time &other) const
-    {
-        return time_ != other.time_;
-    }
-
-    inline bool operator <= (const Time &other) const
-    {
-        return time_ <= other.time_;
-    }
-
-    inline bool operator >= (const Time &other) const
-    {
-         return time_ >= other.time_;
-    }
-
-    inline bool operator > (const Time &other) const
-    {
-         return time_ > other.time_;
-    }
-
-    inline bool operator < (const Time &other) const
-    {
-         return time_ < other.time_;
-    }
-
-    inline Duration operator - (const Time &other) const
-    {
-        return Duration(time_ - other.time_);
-    }
-
-    inline Time operator - (const Duration &d) const
-    {
-        return Time(time_ - d.duration());
-    }
-
-    inline Time operator + (const Duration &d) const
-    {
-        return Time(time_ + d.duration());
-    }
-
 private:
     time_t time_;
 } __attribute__ ((aligned (8)));;
+}
+
+inline bool operator == (const cslibs_time::Time &a, const cslibs_time::Time &b)
+{
+    return a.time() == b.time();
+}
+
+inline bool operator != (const cslibs_time::Time &a, const cslibs_time::Time &b)
+{
+    return a.time() != b.time();
+}
+
+inline bool operator <= (const cslibs_time::Time &a, const cslibs_time::Time &b)
+{
+    return a.time() <= b.time();
+}
+
+inline bool operator >= (const cslibs_time::Time &a, const cslibs_time::Time &b)
+{
+     return a.time() >= b.time();
+}
+
+inline bool operator > (const cslibs_time::Time &a, const cslibs_time::Time &b)
+{
+     return a.time() > b.time();
+}
+
+inline bool operator < (const cslibs_time::Time &a, const cslibs_time::Time &b)
+{
+     return a.time() < b.time();
+}
+
+inline cslibs_time::Duration operator - (const cslibs_time::Time &a, const cslibs_time::Time &b)
+{
+    return cslibs_time::Duration(a.time() - b.time());
+}
+
+inline cslibs_time::Time operator - (const cslibs_time::Time &t, const cslibs_time::Duration &d)
+{
+    return cslibs_time::Time(t.time() - d.duration());
+}
+
+inline cslibs_time::Time operator + (const cslibs_time::Time &t, const cslibs_time::Duration &d)
+{
+    return cslibs_time::Time(t.time() + d.duration());
 }
 
 inline std::ostream & operator << (std::ostream &out, const cslibs_time::Time &time)
