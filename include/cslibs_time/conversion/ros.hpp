@@ -45,15 +45,15 @@ inline Rate from(const ros::Rate &r)
 inline void from(const ros::Time &t_src,
                  Time &t_dst)
 {
-    t_dst = Time(t.toNSec());
+    t_dst = Time(t_src.toNSec());
 }
 
 inline void from(const ros::Duration &d_src,
                  Duration &d_dst)
 {
-    d_dst = Duration(d.toNSec());
+    d_dst = Duration(d_src.toNSec());
 }
-
+/*
 inline void from(const ros::Time &t_start,
                  const ros::Time &t_end,
                  TimeFrame &f)
@@ -61,11 +61,11 @@ inline void from(const ros::Time &t_start,
     f = TimeFrame(from(t_start),
                   from(t_end));
 }
-
+*/
 inline void from(const ros::Rate &r_src,
                  Rate r_dst)
 {
-    r_dst = Rate(from(r.expectedCycleTime()));
+    r_dst = Rate(from(r_src.expectedCycleTime()));
 }
 
 /// TO ROS
@@ -119,7 +119,7 @@ inline void from(const TimeFrame &f,
 inline void from(const Rate &r_src,
                  ros::Rate r_dst)
 {
-    r_dst = ros::Rate(from(r_src.expectedCycleTime());
+    r_dst = ros::Rate(from(r_src.expectedCycleTime()));
 }
 }
 #endif // CSLIBS_TIME_ROS_HPP

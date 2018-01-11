@@ -65,7 +65,7 @@ struct TimeFrame {
     {
         return end.time() - start.time();
     }
-} __attribute__ ((aligned (16)));;
+} __attribute__ ((aligned (16)));
 }
 
 inline std::ostream & operator << (std::ostream &out, const cslibs_time::TimeFrame &time)
