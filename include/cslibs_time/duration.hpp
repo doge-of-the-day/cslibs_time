@@ -59,6 +59,12 @@ public:
         return *this;
     }
 
+    inline Duration& operator -= (const Duration &other)
+    {
+        duration_ -= other.duration_;
+        return *this;
+    }
+
     inline bool sleep() const
     {
         if(duration_ <= duration_t(0))
@@ -71,8 +77,6 @@ public:
     {
         return duration_.count() == 0l;
     }
-
-
 
 private:
     duration_t duration_;
