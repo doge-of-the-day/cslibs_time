@@ -98,6 +98,11 @@ inline cslibs_time::Duration operator * (const cslibs_time::Duration &a, const d
     return cslibs_time::Duration(static_cast<int64_t>(std::floor(a.nanoseconds() * s)));
 }
 
+inline cslibs_time::Duration operator * (const cslibs_time::Duration &a, const cslibs_time::Duration &b)
+{
+    return cslibs_time::Duration(a.nanoseconds() * b.nanoseconds());
+}
+
 inline cslibs_time::Duration operator / (const cslibs_time::Duration &a, const double s)
 {
     return cslibs_time::Duration(static_cast<int64_t>(std::floor(a.nanoseconds() / s)));
@@ -136,8 +141,8 @@ inline bool operator < (const cslibs_time::Duration &a, const cslibs_time::Durat
 inline std::ostream & operator << (std::ostream &out, const cslibs_time::Duration &duration)
 {
     const int64_t ns = duration.nanoseconds();
-    const int64_t s = ns / static_cast<int64_t>(1e9);
-    const int64_t ms = (ns % static_cast<int64_t>(1e9));
+    const int64_t s  = ns / static_cast<int64_t>(1e9);
+    const int64_t ms = (std::abs(ns) % static_cast<int64_t>(1e9));
     out << "[" << std::to_string(s) + "." + std::to_string(ms) << "]";
     return out;
 }
