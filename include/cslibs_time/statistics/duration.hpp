@@ -44,7 +44,6 @@ private:
 
     duration_t mean_;
     duration_t deviation_;
-
 };
 }
 }
