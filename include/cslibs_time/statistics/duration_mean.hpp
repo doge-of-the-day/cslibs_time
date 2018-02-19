@@ -5,17 +5,17 @@
 
 namespace cslibs_time {
 namespace statistics {
-class Duration {
+class DurationMean {
 public:
     using duration_t = cslibs_time::Duration;
 
-    inline Duration() :
+    inline DurationMean() :
         n_(1),
         n_1_(0)
     {
     }
 
-    inline Duration& operator += (const duration_t &d)
+    inline DurationMean& operator += (const duration_t &d)
     {
         const duration_t mean_1 = mean_;
         const double n = static_cast<double>(n_);
