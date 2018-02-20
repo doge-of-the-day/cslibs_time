@@ -18,7 +18,7 @@ public:
 
     inline DurationLowpass& operator += (const duration_t &d)
     {
-        duration_ = alpha_ * d + (1.0 - alpha_) * duration_;
+        duration_ = d * alpha_ + duration_ * (1.0 - alpha_);
         return *this;
     }
 

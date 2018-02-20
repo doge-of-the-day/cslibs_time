@@ -10,8 +10,8 @@ class Stamped
 public:
     using Ptr = std::shared_ptr<Stamped<T>>;
 
-    inline Stamped() :
-        time_(cslibs_time::Time::now())
+    explicit inline Stamped(const Time &time) :
+        time_(time)
     {
     }
 

@@ -18,12 +18,12 @@ public:
     {
     }
 
-    inline Duration(const double seconds) :
+    explicit inline Duration(const double seconds) :
         duration_(static_cast<int64_t>(std::floor(seconds * 1e9)))
     {
     }
 
-    inline Duration(const int64_t nanoseconds) :
+    explicit inline Duration(const int64_t nanoseconds) :
         duration_(nanoseconds)
     {
     }
@@ -93,14 +93,19 @@ inline cslibs_time::Duration operator - (const cslibs_time::Duration &a, const c
     return cslibs_time::Duration(a.duration() - b.duration());
 }
 
+inline cslibs_time::Duration operator * (const cslibs_time::Duration &a, const cslibs_time::Duration &b)
+{
+    return cslibs_time::Duration(a.nanoseconds() * b.nanoseconds());
+}
+
 inline cslibs_time::Duration operator * (const cslibs_time::Duration &a, const double s)
 {
     return cslibs_time::Duration(static_cast<int64_t>(std::floor(a.nanoseconds() * s)));
 }
 
-inline cslibs_time::Duration operator * (const cslibs_time::Duration &a, const cslibs_time::Duration &b)
+inline cslibs_time::Duration operator * (const double s, const cslibs_time::Duration &a)
 {
-    return cslibs_time::Duration(a.nanoseconds() * b.nanoseconds());
+    return cslibs_time::Duration(static_cast<int64_t>(std::floor(a.nanoseconds() * s)));
 }
 
 inline cslibs_time::Duration operator / (const cslibs_time::Duration &a, const double s)

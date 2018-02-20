@@ -18,14 +18,14 @@ public:
     {
     }
 
-    inline Rate(const double rate) :
+    explicit inline Rate(const double rate) :
         start_(Time::now()),
         actual_cycle_time_(0.0),
         expected_cycle_time_(1.0 / rate)
     {
     }
 
-    inline Rate(const Duration &d) :
+    explicit inline Rate(const Duration &d) :
         start_(Time::now()),
         actual_cycle_time_(0.0),
         expected_cycle_time_(d)
