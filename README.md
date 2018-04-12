@@ -1,5 +1,5 @@
 # CS - Library: Time
-This library contains a ros compatible high precision timing library which employs std::chrono.
+This library contains a ros compatible high precision timing library which employs std::chrono. The code is open-source ([BSD License](LICENSE)) and has been tested under Ubuntu 16.04 with ROS Kinetic. Please note that this project is part of ongoing research and that there will be changes in the future.
 
 ## Usage
 
