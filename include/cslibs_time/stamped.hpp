@@ -23,8 +23,8 @@ public:
     }
 
     inline Stamped(const Stamped<T> &other) :
-        data_(other.data),
-        time_(other.time)
+        data_(other.data_),
+        time_(other.time_)
     {
     }
 
