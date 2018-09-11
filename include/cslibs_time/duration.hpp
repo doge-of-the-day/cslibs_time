@@ -80,7 +80,7 @@ public:
 
 private:
     duration_t duration_;
-} __attribute__ ((aligned (8)));;
+};
 }
 
 inline cslibs_time::Duration operator + (const cslibs_time::Duration &a, const cslibs_time::Duration &b)

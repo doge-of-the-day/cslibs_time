@@ -65,7 +65,7 @@ public:
 
 private:
     time_t time_;
-} __attribute__ ((aligned (8)));;
+};
 }
 
 inline bool operator == (const cslibs_time::Time &a, const cslibs_time::Time &b)
