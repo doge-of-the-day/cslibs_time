@@ -16,35 +16,35 @@ struct TimeFrame {
     }
 
     inline TimeFrame(const double start_seconds,
-              const double end_seconds) :
+                     const double end_seconds) :
         start(start_seconds),
         end(end_seconds)
     {
     }
 
     inline TimeFrame(const int64_t &start_nanoseconds,
-              const int64_t &end_nanoseconds) :
+                     const int64_t &end_nanoseconds) :
         start(start_nanoseconds),
         end(end_nanoseconds)
     {
     }
 
     inline TimeFrame(const uint64_t &start_nanoseconds,
-              const uint64_t &end_nanoseconds) :
+                     const uint64_t &end_nanoseconds) :
         start(start_nanoseconds),
         end(end_nanoseconds)
     {
     }
 
     inline TimeFrame(const Time::time_t &start,
-              const Time::time_t &end) :
+                     const Time::time_t &end) :
         start(start),
         end(end)
     {
     }
 
     inline TimeFrame(const Time &start,
-              const Time &end) :
+                     const Time &end) :
         start(start),
         end(end)
     {
@@ -65,7 +65,7 @@ struct TimeFrame {
     {
         return end.time() - start.time();
     }
-} __attribute__ ((aligned (16)));
+} ;
 }
 
 inline std::ostream & operator << (std::ostream &out, const cslibs_time::TimeFrame &time)

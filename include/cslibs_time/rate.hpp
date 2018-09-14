@@ -81,7 +81,7 @@ private:
     Time     start_;
     Duration actual_cycle_time_;
     Duration expected_cycle_time_;
-} __attribute__ ((aligned (32)));
+};
 }
 
 

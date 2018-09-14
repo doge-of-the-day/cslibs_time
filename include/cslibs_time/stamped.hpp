@@ -9,6 +9,7 @@ class Stamped
 {
 public:
     using Ptr = std::shared_ptr<Stamped<T>>;
+    using ConstPtr = std::shared_ptr<const Stamped<T>>;
 
     explicit inline Stamped(const Time &time) :
         time_(time)
@@ -23,8 +24,8 @@ public:
     }
 
     inline Stamped(const Stamped<T> &other) :
-        data_(other.data),
-        time_(other.time)
+        data_(other.data_),
+        time_(other.time_)
     {
     }
 
