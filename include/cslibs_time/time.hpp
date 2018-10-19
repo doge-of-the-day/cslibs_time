@@ -66,7 +66,6 @@ public:
 private:
     time_t time_;
 };
-}
 
 inline bool operator == (const cslibs_time::Time &a, const cslibs_time::Time &b)
 {
@@ -120,6 +119,7 @@ inline std::ostream & operator << (std::ostream &out, const cslibs_time::Time &t
     const int64_t ms = (ns % static_cast<int64_t>(1e9));
     out << "<" << std::to_string(s) + "." + std::to_string(ms) << ">";
     return out;
+}
 }
 
 #endif // CSLIBS_TIME_TIME_HPP
