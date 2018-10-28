@@ -11,6 +11,11 @@ public:
     using Ptr = std::shared_ptr<Stamped<T>>;
     using ConstPtr = std::shared_ptr<const Stamped<T>>;
 
+    explicit Stamped() :
+            data_(),
+            time_()
+    {}
+
     explicit inline Stamped(const Time &time) :
         time_(time)
     {
