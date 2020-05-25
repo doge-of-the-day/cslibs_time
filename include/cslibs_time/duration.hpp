@@ -81,6 +81,7 @@ public:
 private:
     duration_t duration_;
 };
+}
 
 inline cslibs_time::Duration operator + (const cslibs_time::Duration &a, const cslibs_time::Duration &b)
 {
@@ -146,7 +147,6 @@ inline std::ostream & operator << (std::ostream &out, const cslibs_time::Duratio
 {
     out << "[" << std::to_string(duration.seconds()) <<  "]";
     return out;
-}
 }
 
 #endif // CSLIBS_TIME_DURATION_HPP
