@@ -96,12 +96,14 @@ inline std::ostream &operator<<(std::ostream &out,
   return out;
 }
 
+namespace std {
 template <>
-struct std::less<cslibs_time::Time> {
+struct less<cslibs_time::Time> {
   bool operator()(const cslibs_time::Time &lhs,
                             const cslibs_time::Time &rhs) const {
     return lhs.time() < rhs.time();
   }
 };
+}
 
 #endif  // CSLIBS_TIME_TIME_HPP
