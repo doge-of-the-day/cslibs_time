@@ -27,9 +27,9 @@ class Time {
   inline time_t const &time() const { return time_; }
 
   inline double seconds() const {
-    return std::chrono::duration_cast<std::chrono::nanoseconds>(
+    return static_cast<double>(std::chrono::duration_cast<std::chrono::nanoseconds>(
                time_.time_since_epoch())
-               .count() *
+               .count()) *
            1e-9;
   }
 

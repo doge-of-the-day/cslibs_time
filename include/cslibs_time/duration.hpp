@@ -35,12 +35,12 @@ public:
 
     inline double seconds() const
     {
-        return std::chrono::duration_cast<std::chrono::nanoseconds>(duration_).count() * 1e-9;
+        return static_cast<double>(std::chrono::duration_cast<std::chrono::nanoseconds>(duration_).count()) * 1e-9;
     }
 
     inline double milliseconds() const
     {
-        return std::chrono::duration_cast<std::chrono::nanoseconds>(duration_).count() * 1e-6;
+        return static_cast<double>(std::chrono::duration_cast<std::chrono::nanoseconds>(duration_).count()) * 1e-6;
     }
 
     inline int64_t nanoseconds() const
@@ -100,17 +100,17 @@ inline cslibs_time::Duration operator * (const cslibs_time::Duration &a, const c
 
 inline cslibs_time::Duration operator * (const cslibs_time::Duration &a, const double s)
 {
-    return cslibs_time::Duration(static_cast<int64_t>(std::floor(a.nanoseconds() * s)));
+    return cslibs_time::Duration(static_cast<int64_t>(std::floor(static_cast<double>(a.nanoseconds()) * s)));
 }
 
 inline cslibs_time::Duration operator * (const double s, const cslibs_time::Duration &a)
 {
-    return cslibs_time::Duration(static_cast<int64_t>(std::floor(a.nanoseconds() * s)));
+    return cslibs_time::Duration(static_cast<int64_t>(std::floor(static_cast<double>(a.nanoseconds()) * s)));
 }
 
 inline cslibs_time::Duration operator / (const cslibs_time::Duration &a, const double s)
 {
-    return cslibs_time::Duration(static_cast<int64_t>(std::floor(a.nanoseconds() / s)));
+    return cslibs_time::Duration(static_cast<int64_t>(std::floor(static_cast<double>(a.nanoseconds()) / s)));
 }
 
 inline bool operator == (const cslibs_time::Duration &a, const cslibs_time::Duration &b)
