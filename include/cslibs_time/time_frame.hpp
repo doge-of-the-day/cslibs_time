@@ -36,17 +36,17 @@ struct TimeFrame {
     {
     }
 
-    inline TimeFrame(const Time::time_t &start,
-                     const Time::time_t &end) :
-        start(start),
-        end(end)
+    inline TimeFrame(const Time::time_t &start_time,
+                     const Time::time_t &end_time) :
+        start{start_time},
+        end{end_time}
     {
     }
 
-    inline TimeFrame(const Time &start,
-                     const Time &end) :
-        start(start),
-        end(end)
+    inline TimeFrame(const Time &start_time,
+                     const Time &end_time) :
+        start{start_time},
+        end{end_time}
     {
     }
 
