@@ -1,5 +1,4 @@
-#ifndef CSLIBS_TIME_STASTICS_DURATION_HPP
-#define CSLIBS_TIME_STASTICS_DURATION_HPP
+#pragma once
 
 #include <cslibs_time/duration.hpp>
 
@@ -9,13 +8,7 @@ class DurationMean {
 public:
     using duration_t = cslibs_time::Duration;
 
-    inline DurationMean() :
-        n_(1),
-        n_1_(0)
-    {
-    }
-
-    inline DurationMean& operator += (const duration_t &d)
+    DurationMean& operator += (const duration_t &d)
     {
         const duration_t mean_1 = mean_;
         const double n = static_cast<double>(n_);
@@ -28,24 +21,22 @@ public:
         return *this;
     }
 
-    inline duration_t const & mean() const
+    duration_t const & mean() const
     {
         return mean_;
     }
 
-    inline duration_t const &variance() const
+    duration_t const &variance() const
     {
         return deviation_;
     }
 
 private:
-    std::size_t n_;
-    std::size_t n_1_;
+    std::size_t n_{1};
+    std::size_t n_1_{0};
 
-    duration_t mean_;
-    duration_t deviation_;
+    duration_t mean_{};
+    duration_t deviation_{};
 };
 }
 }
-
-#endif // CSLIBS_TIME_STASTICS_DURATION_HPP

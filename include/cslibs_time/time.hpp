@@ -1,5 +1,4 @@
-#ifndef CSLIBS_TIME_TIME_HPP
-#define CSLIBS_TIME_TIME_HPP
+#pragma once
 
 #include <cslibs_time/duration.hpp>
 #include <ctime>
@@ -12,39 +11,45 @@ class Time {
   using time_t = clock_t::time_point;
   using duration_t = clock_t::duration;
 
-  inline Time() : time_(duration_t(0)) {}
+   Time() = default;
 
-  inline Time(const double seconds)
+   explicit Time(const double seconds)
       : time_(std::chrono::nanoseconds(static_cast<int64_t>(seconds * 1e9))) {}
 
-  inline Time(const int64_t &nanoseconds) : time_(duration_t(nanoseconds)) {}
+   explicit Time(const int64_t &nanoseconds) : time_(duration_t(nanoseconds)) {}
 
-  inline Time(const uint64_t &nanoseconds)
+   explicit Time(const uint64_t &nanoseconds)
       : time_(duration_t(static_cast<int64_t>(nanoseconds))) {}
 
-  inline Time(const time_t &time) : time_(time) {}
+   explicit Time(const time_t &time) : time_{time} {}
 
-  inline time_t const &time() const { return time_; }
+   Time(const Time&) = default;
+   Time(Time&&) = default;
 
-  inline double seconds() const {
+   Time& operator = (const Time&) = default;
+   Time& operator = (Time&&) = default;
+
+   time_t const &time() const { return time_; }
+
+   double seconds() const {
     return static_cast<double>(std::chrono::duration_cast<std::chrono::nanoseconds>(
                time_.time_since_epoch())
                .count()) *
            1e-9;
   }
 
-  inline int64_t nanoseconds() const {
+   int64_t nanoseconds() const {
     return std::chrono::duration_cast<std::chrono::nanoseconds>(
                time_.time_since_epoch())
         .count();
   }
 
-  inline bool isZero() const { return time_ == time_t(duration_t(0)); }
+   bool isZero() const { return time_ == time_t(duration_t(0)); }
 
-  inline Time static now() { return Time(clock_t::now()); }
+   static Time now() { return Time(clock_t::now()); }
 
  private:
-  time_t time_;
+  time_t time_{};
 };
 }  // namespace cslibs_time
 
@@ -105,5 +110,3 @@ struct less<cslibs_time::Time> {
   }
 };
 }
-
-#endif  // CSLIBS_TIME_TIME_HPP

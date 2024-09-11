@@ -1,5 +1,4 @@
-#ifndef CSLIBS_TIME_STASTICS_DURATION_WINDOW_HPP
-#define CSLIBS_TIME_STASTICS_DURATION_WINDOW_HPP
+#pragma once
 
 #include <cslibs_time/duration.hpp>
 
@@ -9,21 +8,20 @@ class DurationWindow {
 public:
     using duration_t = cslibs_time::Duration;
 
-    inline DurationWindow() :
-        n_(1),
-        n_1_(0),
-        size_(std::numeric_limits<std::size_t>::max())
+    DurationWindow() = default;
+
+    explicit DurationWindow(const std::size_t size) :
+        size_{size}
     {
     }
 
-    inline DurationWindow(const std::size_t size) :
-        n_(1),
-        n_1_(0),
-        size_(size)
-    {
-    }
+    DurationWindow(const DurationWindow&) = default;
+    DurationWindow(DurationWindow&&) = default;
 
-    inline DurationWindow& operator += (const duration_t &d)
+    DurationWindow& operator = (const DurationWindow&) = default;
+    DurationWindow& operator = (DurationWindow&&) = default;
+
+    DurationWindow& operator += (const duration_t &d)
     {
 
         const double n = static_cast<double>(n_);
@@ -50,20 +48,20 @@ public:
         return n_ >= size_ ? update_Window(d) : update(d);
     }
 
-    inline duration_t const & mean() const
+    duration_t const & mean() const
     {
         return mean_;
     }
 
-    inline duration_t const &variance() const
+    duration_t const &variance() const
     {
         return deviation_;
     }
 
 private:
-    std::size_t n_;
-    std::size_t n_1_;
-    std::size_t size_;
+    std::size_t n_{1};
+    std::size_t n_1_{0};
+    std::size_t size_{std::numeric_limits<std::size_t>::max()};
 
     duration_t mean_;
     duration_t deviation_;
@@ -71,5 +69,3 @@ private:
 };
 }
 }
-
-#endif // CSLIBS_TIME_STASTICS_DURATION_WINDOW_HPP

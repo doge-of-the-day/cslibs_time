@@ -1,5 +1,4 @@
-#ifndef CSLIBS_TIME_ROS_HPP
-#define CSLIBS_TIME_ROS_HPP
+#pragma once
 
 #include <ros/rate.h>
 #include <ros/time.h>
@@ -25,7 +24,7 @@ inline Duration from(const ros::Duration &d)
 }
 
 inline TimeFrame from(const ros::Time &t_start,
-                      const ros::Time &t_end)
+               const ros::Time &t_end)
 {
     return TimeFrame(from(t_start),
                      from(t_end));
@@ -49,19 +48,11 @@ inline void from(const ros::Time &t_src,
 }
 
 inline void from(const ros::Duration &d_src,
-                 Duration &d_dst)
+          Duration &d_dst)
 {
     d_dst = Duration(d_src.toNSec());
 }
-/*
-inline void from(const ros::Time &t_start,
-                 const ros::Time &t_end,
-                 TimeFrame &f)
-{
-    f = TimeFrame(from(t_start),
-                  from(t_end));
-}
-*/
+
 inline void from(const ros::Rate &r_src,
                  Rate r_dst)
 {
@@ -122,4 +113,3 @@ inline void from(const Rate &r_src,
     r_dst = ros::Rate(from(r_src.expectedCycleTime()));
 }
 }
-#endif // CSLIBS_TIME_ROS_HPP

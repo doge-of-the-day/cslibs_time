@@ -1,5 +1,4 @@
-#ifndef CSLIBS_TIME_DURATION_HPP
-#define CSLIBS_TIME_DURATION_HPP
+#pragma once
 
 #include <chrono>
 #include <thread>
@@ -13,7 +12,7 @@ public:
     using time_t     = clock_t::time_point;
     using duration_t = clock_t::duration;
 
-    inline Duration() :
+    explicit Duration() :
         duration_(0l)
     {
     }
@@ -28,44 +27,50 @@ public:
     {
     }
 
-    inline Duration(const duration_t duration) :
+    explicit Duration(const duration_t duration) :
         duration_(duration)
     {
     }
 
-    inline double seconds() const
+    Duration(const Duration&) = default;
+    Duration(Duration&&) = default;
+
+    Duration& operator = (const Duration&) = default;
+    Duration& operator = (Duration&&) = default;
+
+    double seconds() const
     {
         return static_cast<double>(std::chrono::duration_cast<std::chrono::nanoseconds>(duration_).count()) * 1e-9;
     }
 
-    inline double milliseconds() const
+    double milliseconds() const
     {
         return static_cast<double>(std::chrono::duration_cast<std::chrono::nanoseconds>(duration_).count()) * 1e-6;
     }
 
-    inline int64_t nanoseconds() const
+    int64_t nanoseconds() const
     {
         return std::chrono::duration_cast<std::chrono::nanoseconds>(duration_).count();
     }
 
-    inline duration_t duration() const
+    duration_t duration() const
     {
         return duration_;
     }
 
-    inline Duration& operator += (const Duration &other)
+    Duration& operator += (const Duration &other)
     {
         duration_ += other.duration_;
         return *this;
     }
 
-    inline Duration& operator -= (const Duration &other)
+    Duration& operator -= (const Duration &other)
     {
         duration_ -= other.duration_;
         return *this;
     }
 
-    inline bool sleep() const
+    bool sleep() const
     {
         if(duration_ <= duration_t(0))
             return false;
@@ -73,7 +78,7 @@ public:
         return true;
     }
 
-    inline bool isZero() const
+    bool isZero() const
     {
         return duration_.count() == 0l;
     }
@@ -148,5 +153,3 @@ inline std::ostream & operator << (std::ostream &out, const cslibs_time::Duratio
     out << "[" << std::to_string(duration.seconds()) <<  "]";
     return out;
 }
-
-#endif // CSLIBS_TIME_DURATION_HPP

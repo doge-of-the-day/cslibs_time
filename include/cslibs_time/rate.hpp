@@ -1,5 +1,4 @@
-#ifndef CSLIBS_TIME_RATE_HPP
-#define CSLIBS_TIME_RATE_HPP
+#pragma once
 
 #include <cslibs_time/time.hpp>
 #include <cslibs_time/duration.hpp>
@@ -11,48 +10,48 @@ public:
     using time_t     = clock_t::time_point;
     using duration_t = clock_t::duration;
 
-    inline Rate() :
-        start_(Time::now()),
-        actual_cycle_time_(0.0),
-        expected_cycle_time_(std::numeric_limits<double>::infinity())
+    Rate() :
+        start_{Time::now()},
+        actual_cycle_time_{0.0},
+        expected_cycle_time_{std::numeric_limits<double>::infinity()}
     {
     }
 
-    explicit inline Rate(const double rate) :
-        start_(Time::now()),
-        actual_cycle_time_(0.0),
-        expected_cycle_time_(1.0 / rate)
+    explicit Rate(const double rate) :
+        start_{Time::now()},
+        actual_cycle_time_{0.0},
+        expected_cycle_time_{1.0 / rate}
     {
     }
 
-    explicit inline Rate(const Duration &d) :
-        start_(Time::now()),
-        actual_cycle_time_(0.0),
-        expected_cycle_time_(d)
+    explicit Rate(const Duration &d) :
+        start_{Time::now()},
+        actual_cycle_time_{0.0},
+        expected_cycle_time_{d}
     {
     }
 
-    inline void reset()
+    void reset()
     {
         start_ = Time::now();
     }
 
-    inline Duration cycleTime() const
+    Duration cycleTime() const
     {
         return actual_cycle_time_;
     }
 
-    inline Duration expectedCycleTime() const
+    Duration expectedCycleTime() const
     {
         return expected_cycle_time_;
     }
 
-    inline double frequency() const
+    double frequency() const
     {
         return 1.0 / expectedCycleTime().seconds();
     }
 
-    inline bool sleep()
+    bool sleep()
     {
         Time expected_end = start_ + expected_cycle_time_;
         Time actual_end = Time::now();
@@ -83,6 +82,3 @@ private:
     Duration expected_cycle_time_;
 };
 }
-
-
-#endif // CSLIBS_TIME_RATE_HPP
