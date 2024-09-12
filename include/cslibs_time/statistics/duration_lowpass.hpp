@@ -6,33 +6,26 @@ namespace cslibs_time {
 namespace statistics {
 class DurationLowpass {
 public:
-    using duration_t = cslibs_time::Duration;
+  using duration_t = cslibs_time::Duration;
 
-    explicit DurationLowpass(const double alpha = 0.01) :
-        alpha_{alpha}
-    {
-    }
+  explicit DurationLowpass(const double alpha = 0.01) : alpha_{alpha} {}
 
-    DurationLowpass(const DurationLowpass&) = default;
-    DurationLowpass(DurationLowpass&&) = default;
+  DurationLowpass(const DurationLowpass &) = default;
+  DurationLowpass(DurationLowpass &&) = default;
 
-    DurationLowpass& operator = (const DurationLowpass&) = default;
-    DurationLowpass& operator = (DurationLowpass&&) = default;
+  DurationLowpass &operator=(const DurationLowpass &) = default;
+  DurationLowpass &operator=(DurationLowpass &&) = default;
 
-    DurationLowpass& operator += (const duration_t &d)
-    {
-        duration_ = d * alpha_ + duration_ * (1.0 - alpha_);
-        return *this;
-    }
+  DurationLowpass &operator+=(const duration_t &d) {
+    duration_ = d * alpha_ + duration_ * (1.0 - alpha_);
+    return *this;
+  }
 
-    duration_t const & duration() const
-    {
-        return duration_;
-    }
+  duration_t const &duration() const { return duration_; }
 
 private:
-    double     alpha_;
-    duration_t duration_{};
+  double alpha_;
+  duration_t duration_{};
 };
-}
-}
+} // namespace statistics
+} // namespace cslibs_time
