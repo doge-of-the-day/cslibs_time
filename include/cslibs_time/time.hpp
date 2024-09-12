@@ -7,6 +7,7 @@
 #include <assert.h>
 
 namespace cslibs_time {
+/// @brief Class to represent time values
 class Time {
 public:
   /// @brief underlying clock type
